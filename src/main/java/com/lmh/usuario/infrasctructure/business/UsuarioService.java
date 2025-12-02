@@ -1,10 +1,10 @@
 package com.lmh.usuario.infrasctructure.business;
 
-
 import com.lmh.usuario.infrasctructure.business.converter.UsuarioConverter;
 import com.lmh.usuario.infrasctructure.business.dto.UsuarioDTO;
 import com.lmh.usuario.infrasctructure.entity.Usuario;
 import com.lmh.usuario.infrasctructure.exceptions.ConflictException;
+import com.lmh.usuario.infrasctructure.exceptions.ResourceNotFoundException;
 import com.lmh.usuario.infrasctructure.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,5 +37,14 @@ public class UsuarioService {
 
     public boolean verificaEmailExistente(String email) {
         return usuarioRepository.existsByEmail(email);
+    }
+
+    public Usuario buscarUsuarioPorEmail(String email) {
+        return usuarioRepository.findByEmail(email).orElseThrow(
+                () -> new ResourceNotFoundException("Email não encontrado " + email));
+    }
+
+    public void deletaUsuarioPorEmail(String email) {
+        usuarioRepository.deleteByEmail(email);
     }
 }
