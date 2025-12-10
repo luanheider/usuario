@@ -33,6 +33,7 @@ public class UsuarioConverter {
                 .cidade(enderecoDTO.getCidade())
                 .estado(enderecoDTO.getEstado())
                 .complemento(enderecoDTO.getComplemento())
+                .numero(enderecoDTO.getNumero())
                 .build();
     }
 
@@ -41,7 +42,10 @@ public class UsuarioConverter {
     }
 
     public Telefone paraTelefone(TelefoneDTO telefoneDTO) {
-        return Telefone.builder().numero(telefoneDTO.getNumero()).ddd(telefoneDTO.getDdd()).build();
+        return Telefone.builder()
+                .numero(telefoneDTO.getNumero())
+                .ddd(telefoneDTO.getDdd())
+                .build();
     }
 
     public UsuarioDTO paraUsuarioDTO(Usuario usuario) {
@@ -60,6 +64,7 @@ public class UsuarioConverter {
                 .cidade(endereco.getCidade())
                 .estado(endereco.getEstado())
                 .complemento(endereco.getComplemento())
+                .numero(endereco.getNumero())
                 .build();
     }
 
@@ -96,6 +101,7 @@ public class UsuarioConverter {
                 .numero(enderecoDTO.getNumero() != null ? enderecoDTO.getNumero() : endereco.getNumero())
                 .complemento(enderecoDTO.getComplemento() != null ? enderecoDTO.getComplemento() :
                         endereco.getComplemento())
+                .usuario_id(endereco.getUsuario_id())
                 .build();
     }
 
@@ -104,6 +110,7 @@ public class UsuarioConverter {
                 .id(telefone.getId())
                 .ddd(telefoneDTO.getDdd() != null ? telefoneDTO.getDdd() : telefone.getDdd())
                 .numero(telefoneDTO.getNumero() != null ? telefoneDTO.getNumero() : telefone.getNumero())
+                .usuario_id(telefone.getUsuario_id())
                 .build();
     }
 
